@@ -10,6 +10,6 @@ namespace LibraryManagement.Models
         public int imageId { get; set; }
         public string imageUrl { get; set; }
         public int BookId { get; set; }
-        public int IsActive { get; set; }
+        public int IsActive { get; set; }  
     }
 }
