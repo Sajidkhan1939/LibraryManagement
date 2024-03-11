@@ -1,0 +1,95 @@
+﻿@model LibraryManagement.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+
+    .registration-container {
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .registration-card {
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+
+<div class="registration-container">
+    <div class="registration-card">
+        <h2>Create a new account.</h2>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Enter your name", required = "required" })
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your email", required = "required" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter your password", required = "required" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm your password", required = "required" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Enter your Phone Number", required = "required" })
+            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+
+            <input type="text" id="RoleID" name="RoleID" value="9d9c3e0f-87bb-4d7e-9eb5-ff41a097670e" class="form-control" hidden />
+
+            <button type="submit">Register</button>
+        }
+        <p>
+            Already have an account? <a href="/Account/Login">Login here</a>.
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

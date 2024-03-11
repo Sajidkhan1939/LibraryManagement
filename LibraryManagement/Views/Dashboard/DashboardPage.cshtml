@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "DashboardPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/css/Index/Index.css" rel="stylesheet" />
+<style>
+    .dataTables_wrapper .dataTables_length select {
+        width: 80px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-4" style="padding-left:0;">
+            <div class="card info-card total-books">
+                <div class="card-header">
+                    <h3 class="card-title"><b>Issue</b> <span>| <b>Books</b></span></h3>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-book" style="font-size: 32px;"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h3 id="issued-books"></h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card info-card issue-books">
+                <div class="card-header">
+                    <h5 class="card-title"> <b>Total</b> <span>| <b>Total Books</b></span></h5>
+                </div>
+                <div class="card-body">
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-book" style="font-size: 32px;"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h3 id="total-books"></h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-4" style="padding-right:0">
+            <div class="card info-card issue-books">
+                <div class="card-header">
+                    <h5 class="card-title"> <b>Available</b> <span>| <b>Books</b></span></h5>
+                </div>
+                <div class="card-body">
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-book" style="font-size: 32px;"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h3 id="available-books"></h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2><b>Issued Books Details</b></h2>
+                    </div>
+                    <div class="col-lg-2 searchbar">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th hidden>ID</th>
+                        <th>BookTitle</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>UserName</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Issue_Date</th>
+                        <th>Due_Date</th>
+                        <th>Status</th>
+                        <th>Fine</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodycontent">
+                </tbody>
+            </table>            
+        </div>
+    </div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Book</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label hidden>ID</label>
+                        <input type="hidden" id="bookid" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="booktitle" class="form-control"
+                               style="margin-bottom:10px" placeholder="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="author" placeholder="Author" style="margin-bottom:10px" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="genre" class="form-control" style="margin-bottom:10px" placeholder="Genre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="publisher" class="form-control" style="margin-bottom:10px" placeholder="Publisher" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="pyear" class="form-control" placeholder="P_Year" style="margin-bottom:10px" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="isbn" class="form-control" placeholder="ISBN" style="margin-bottom:10px" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="tcopies" class="form-control" placeholder="T_Copies" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel">
+                    <input type="button" class="btn btn-default" onclick="addbook()" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/JS/Index/Index.js"></script>
+}

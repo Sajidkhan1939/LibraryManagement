@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "UserBooks";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<link href="~/css/BooksCart/userbooksdetail.css" rel="stylesheet" />
+<div class="container userbooks">
+    <table class="table table-xs">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Description</th>
+                <th class="text-right">issuedate</th>
+                <th class="text-right">returndate</th>
+                <th class="text-right">Status</th>
+                <th class="text-right">Fine</th>
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="userallbooks">
+
+        </tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="~/JS/Mainpage/BooksCart/userbooks.js"></script>
+}

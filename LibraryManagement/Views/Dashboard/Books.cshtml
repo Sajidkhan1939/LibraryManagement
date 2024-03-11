@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Books";
+}
+<link href="~/css/Student/Student.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Manage <b>Books</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a data-bs-toggle="modal" data-bs-target="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i> <span style=" margin-top: 6px;">Add New Book</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped dataTable table-hover" id="bookstable">
+                <thead>
+                    <tr>
+                        <th hidden>ID</th>
+                        <th style="width:15%">Title</th>
+                        <th style="width:15%">Author</th>
+                        <th style="width:15%">Genre</th>
+                        <th style="width:10%">Publisher</th>
+                        <th style="width:10%">P_Year</th>
+                        <th style="width:10%">ISBN</th>
+                        <th style="width:10%">T_Copies</th>
+                        <th style="width:15%">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody id="booksdata">
+                </tbody>
+            </table>          
+        </div>
+    </div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Book</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label hidden>ID</label>
+                        <input type="hidden" id="bookid" class="form-control" value="0" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="booktitle" class="form-control"
+                               style="margin-bottom:10px" placeholder="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="author" placeholder="Author" style="margin-bottom:10px" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="genre" class="form-control" style="margin-bottom:10px" placeholder="Genre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="publisher" class="form-control" style="margin-bottom:10px" placeholder="Publisher" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="pyear" class="form-control" placeholder="P_Year" style="margin-bottom:10px" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="isbn" class="form-control" placeholder="ISBN" style="margin-bottom:10px" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="tcopies" class="form-control" placeholder="T_Copies" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" id="imageFile" class="form-control" style="margin-bottom:10px" required accept=".png,.jpeg,.jpg">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel">
+                    <input type="button" class="btn btn-default" onclick="addbook()" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/JS/Books/Books.js"></script>
+}
+
