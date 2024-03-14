@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,7 @@ namespace LibraryManagement.Models
 {
     public class Books
     {
+        [Key]
         public int Book_ID { get; set; }
         public string title { get; set; }
         public string author { get; set; }

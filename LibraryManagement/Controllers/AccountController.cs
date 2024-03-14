@@ -77,10 +77,18 @@ namespace LibraryManagement.Controllers
             {
                 case SignInStatus.Success:
                     var user = UserManager.FindByEmail(model.Email);
-                    if (user.Roles.FirstOrDefault().RoleId == "9d9c3e0f-87bb-4d7e-9eb5-ff41a097670e")
+                    var userRole = await UserManager.GetRolesAsync(user.Id);
+                    if (userRole.Contains("User"))
                     {
-                        returnUrl = "/User/Main";
-                    }
+                        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Main", "User");
+                        }
+                    }                 
                     else
                     {
                         returnUrl = "/Dashboard/DashboardPage";
@@ -153,7 +161,26 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> RegisterUser(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {       
+                    await UserManager.AddToRoleAsync(user.Id, "User");
+                    return RedirectToAction("Main", "User");
+                }
+                AddErrors(result);
+            }
+
+            return View(model);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterAdmin(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -161,16 +188,8 @@ namespace LibraryManagement.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (model.RoleId == "4f8b6a20-2a9f-4c9d-b7c5-957d5026fb51")
-                    {
-                        await UserManager.AddToRoleAsync(user.Id, "Admin");
-                    }
-                    else
-                    {
-                        await UserManager.AddToRoleAsync(user.Id, "User");
-                        return RedirectToAction("Main", "User");
-                    }
-                    return RedirectToAction("DashboardPage", "Dashboard");
+                    await UserManager.AddToRoleAsync(user.Id, "Admin");
+                    return RedirectToAction("Main", "User");
                 }
                 AddErrors(result);
             }
