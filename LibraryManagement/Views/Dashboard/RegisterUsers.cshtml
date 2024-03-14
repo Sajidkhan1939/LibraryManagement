@@ -39,7 +39,7 @@
                 <h3>Add User</h3>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("Register", "Manage", FormMethod.Post, new { @class = "form-group", role = "form" }))
+                @using (Html.BeginForm("RegisterAdmin", "Manage", FormMethod.Post, new { @class = "form-group", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
 
