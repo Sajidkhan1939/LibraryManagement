@@ -50,14 +50,16 @@
         });
 }
 function requestBook(bookID) {
+    debugger;
     console.log(bookID);
-    const url = "/Dashboard/IssueBook";
+    const url = "/User/IssuenewBook";
+    var params = { Book_ID: bookID };
     const requestOptions = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id: bookID})
+        body: JSON.stringify({ dto: params})
     };
     fetch(url, requestOptions)
         .then(response => {

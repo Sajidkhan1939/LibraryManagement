@@ -62,7 +62,28 @@ namespace LibraryManagement.Controllers
         {
             var res = repo.ReturnBook(id);
             Console.WriteLine(res);
+            if (res == "success")
+            {
+                return Json(new { result = true, data = res }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { result = false, data = res }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [Authorize(Roles = "User")]
+        public ActionResult IssuenewBook(BooksViewModel dto)
+        {
+            var id = "";
+            if (User.Identity.IsAuthenticated)
+            {
+                id = User.Identity.GetUserId();
+            }
+            dto.UserId = id;
+            var res = repo.IssueNewBook(dto);
+            Console.WriteLine(res);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
+
     }
 }

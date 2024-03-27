@@ -9,13 +9,10 @@ namespace LibraryManagement.Models
 {
     public class BooksIssued
     {
-        [Key]
         public int issue_id { get; set; }
-        [ForeignKey("Book")]
         public int book_id { get; set; }
         public DateTime issue_date { get; set; }
         public DateTime return_date { get; set; }
-        [ForeignKey("AspNetUsers")]
         public string UserId { get; set; }
         public ApplicationUser Aspnetuser { get; set; }
         public Books book { get; set; }
