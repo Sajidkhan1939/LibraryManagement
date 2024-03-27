@@ -72,11 +72,11 @@ namespace LibraryManagement.Controllers
             {
                 return View(model);
             }           
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = UserManager.FindByEmail(model.Email);
+                    var user = UserManager.FindByName(model.UserName);
                     var userRole = await UserManager.GetRolesAsync(user.Id);
                     if (userRole.Contains("User"))
                     {
@@ -165,7 +165,7 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {       
@@ -184,12 +184,12 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, "Admin");
-                    return RedirectToAction("Main", "User");
+                    return RedirectToAction("DashboardPage", "Dashboard");
                 }
                 AddErrors(result);
             }
