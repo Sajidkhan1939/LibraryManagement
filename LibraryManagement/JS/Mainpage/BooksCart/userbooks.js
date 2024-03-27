@@ -50,16 +50,15 @@ function returnbook(issue_id) {
     };
     fetch(url, requestOptions)
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+            console.log(response);
+            if (response.result == false) {
+                alert("Please contact Librarian");
             }
-            return response.json();
-        })
-        .then(res => {
-            console.log(res);
-            $("#userallbooks").remove();
-        })
-
+            else {
+                alert("SUCCESSFULLY RETURNED");
+                userbooks();
+            }
+        })       
 }
 
 $(document).ready(function () {

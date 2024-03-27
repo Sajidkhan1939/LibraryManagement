@@ -37,6 +37,8 @@
                 $("#bookstable").dataTable({
                     "bFilter": false,
                     "bLengthChange": false,
+                    paging: true,
+                    searching: true
 
                 });
             }

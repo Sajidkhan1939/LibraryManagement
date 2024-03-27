@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Results;
 
 namespace LibraryManagementSystem.Models
 {
@@ -143,8 +144,20 @@ namespace LibraryManagementSystem.Models
                 var res = db.DtabaseCrud("returnBook", parameters);
                 if (res.Result)
                 {
-                    string message = "successfully returned book";
-                    return message;
+                    var dataTable = res.DataResult.Tables[0];
+                    
+                    DataRow row = dataTable.Rows[0];
+
+                    var contentres =row.ItemArray[0].ToString();
+                    if (contentres == "0")
+                    {
+                        string message = row.ItemArray[1].ToString();
+                        return message;
+                    }
+                    else {
+                        string message = "success";
+                        return message;
+                    }
                 }
                 else
                 {
@@ -153,6 +166,32 @@ namespace LibraryManagementSystem.Models
             }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message);
+            }
+        }
+        public string IssueNewBook(BooksViewModel dto)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>
+                {
+
+                    new SqlParameter("@userid", dto.UserId),
+                    new SqlParameter("@bookid", dto.Book_ID)
+                };
+                var result = db.DtabaseCrud("IssueBooks", parameters);
+                if (result.Result)
+                {
+                    return "book is issued successfully";
+                }
+                else
+                {
+                    return "something went wrong";
+                }
+            }
+            catch (Exception ex)
+            {
+
                 throw new Exception(ex.Message);
             }
         }
