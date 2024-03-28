@@ -38,8 +38,8 @@
                     "bFilter": false,
                     "bLengthChange": false,
                     paging: true,
-                    searching: true
-
+                    searching: true,
+                    bDestroy: true
                 });
             }
         })
