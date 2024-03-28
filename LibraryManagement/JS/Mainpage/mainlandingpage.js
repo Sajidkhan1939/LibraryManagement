@@ -15,7 +15,6 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             // Iterate over each book in the data and render it
             data.map(book => {
                 // Create HTML elements for each book

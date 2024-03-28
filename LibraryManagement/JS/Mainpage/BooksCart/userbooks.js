@@ -15,7 +15,6 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             $("#userallbooks").empty();
             if (data && data.length > 0) {
                 const bookshtml = data.map(userdata => {
@@ -39,7 +38,6 @@
         })
 }
 function returnbook(issue_id) {
-    console.log(issue_id);
     const url = "/User/ReturnBook";
     const requestOptions = {
         method: 'POST',
@@ -50,7 +48,6 @@ function returnbook(issue_id) {
     };
     fetch(url, requestOptions)
         .then(response => {
-            console.log(response);
             if (response.result == false) {
                 alert("Please contact Librarian");
             }

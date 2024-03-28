@@ -47,7 +47,6 @@
 }
 function updateBook(Book_ID,title,author,genre,publisher,publication_year,ISBN,total_copies)
 {
-    console.log('edit button clicked');
     $("#addEmployeeModal").modal('show');
     $("#bookid").val(Book_ID);
     $("#booktitle").val(title);
@@ -92,8 +91,6 @@ function addbook() {
     if (imageFiles && imageFiles.length > 0) {
         imageFile = imageFiles[0];
     }
-    console.log(imageFile);
-
     const formData = new FormData();
     formData.append('Book_ID', bookid);
     formData.append('title', title);
@@ -104,8 +101,6 @@ function addbook() {
     formData.append('ISBN', ISBN);
     formData.append('total_copies', total_copies);
     formData.append('imagefile', imageFile);
-    console.log(formData);
-    //return false;
     const url = "/Dashboard/AddBooks";
     const requestOptions = {
         method: 'POST',

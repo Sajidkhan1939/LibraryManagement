@@ -28,7 +28,6 @@
         .catch(err => console.log(err));
 }
 function editstudent(StudentId, StudentName, StudentEmail, StudentPhone) {
-    console.log('update called');
     $("#addEmployeeModal").modal('show');
     $("#sId").val(StudentId);
     $("#sname").val(StudentName);

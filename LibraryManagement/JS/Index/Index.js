@@ -38,7 +38,6 @@ function IssuedbooksDetails() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             $("#tbodycontent").empty();
             if (data && data.length > 0) {
                 const htmldata = data.map(detail => {

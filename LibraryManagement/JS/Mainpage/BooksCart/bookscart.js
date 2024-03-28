@@ -1,5 +1,4 @@
 ﻿function getbook(bookID) {
-    console.log(bookID);
     const url = "/User/GetBook";
     const requestOptions = {
         method: 'POST',
@@ -16,7 +15,6 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
             // Iterate over each book in the data and render it
             data.map(book => {
                 // Create HTML elements for each book
@@ -50,8 +48,6 @@
         });
 }
 function requestBook(bookID) {
-    debugger;
-    console.log(bookID);
     const url = "/User/IssuenewBook";
     var params = { Book_ID: bookID };
     const requestOptions = {
