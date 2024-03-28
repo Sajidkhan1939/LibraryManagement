@@ -10,10 +10,10 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Manage <b>Employee</b></h2>
+                        <h2>View <b>Librarians</b></h2>
                     </div>
                     <div class="col-sm-6">
-                        <a data-bs-toggle="modal" data-bs-target="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i> <span style=" margin-top: 6px;">Add New Employee</span></a>
+                        <a href="/Account/RegisterAdmin" class="btn btn-success"><i class="bi bi-plus-circle"></i> <span style=" margin-top: 6px;">Add New Librarian</span></a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
     </div>
 </div>
 <!-- Edit Modal HTML -->
-<div id="addEmployeeModal" class="modal fade">
+@*<div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -68,7 +68,7 @@
             
         </div>
     </div>
-</div>
+</div>*@
 @section scripts{
     <script src="~/JS/AdminUser/adminuser.js"></script>
     @Scripts.Render("~/bundles/jqueryval")

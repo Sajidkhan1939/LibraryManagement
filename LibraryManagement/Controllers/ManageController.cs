@@ -101,10 +101,44 @@ namespace LibraryManagement.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
-        public ActionResult AddPhoneNumber()
+        public async Task<ActionResult> AddPhoneNumber()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var userinfo = UserManager.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+            var model = new AddPhoneNumberViewModel
+            {
+                Number = userinfo.PhoneNumber,
+                UserName = userinfo.UserName,
+                Email = userinfo.Email
+            };
+            return View(model);
         }
+        //
+        // POST: /Manage/AddPhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            user.PhoneNumber = model.Number;
+            user.Email = model.Email;
+            user.UserName = model.UserName;
+
+            var result = await UserManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                ViewBag.SuccessMessage = "Your profile has been updated successfully.";
+                return View(model);
+            }
+            AddErrors(result);
+            return View(model);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -123,29 +157,6 @@ namespace LibraryManagement.Controllers
             }
 
             return Json(model);
-        }
-        //
-        // POST: /Manage/AddPhoneNumber
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            //// Generate the token and send it
-            //var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            //if (UserManager.SmsService != null)
-            //{
-            //    var message = new IdentityMessage
-            //    {
-            //        Destination = model.Number,
-            //        Body = "Your security code is: " + code
-            //    };
-            //    await UserManager.SmsService.SendAsync(message);
-            //}
-            return View(model);
         }
 
         //

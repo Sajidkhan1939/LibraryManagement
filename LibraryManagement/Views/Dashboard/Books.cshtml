@@ -47,32 +47,49 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
+                        <label id="errMessage" style="display: none; color:red"></label>
                         <label hidden>ID</label>
                         <input type="hidden" id="bookid" class="form-control" value="0" required>
                     </div>
                     <div class="form-group">
+                        <label id="errTitle" style="display: none; color:red"></label>
+                        <label>Title</label>
                         <input type="text" id="booktitle" class="form-control"
-                               style="margin-bottom:10px" placeholder="Title" required>
+                               style="margin-bottom:10px"  required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" id="author" placeholder="Author" style="margin-bottom:10px" required>
+                        <label id="errAuthor" style="display: none; color:red"></label>
+                        <label>Author</label>
+                        <input class="form-control" type="text" id="author"  style="margin-bottom:10px" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="genre" class="form-control" style="margin-bottom:10px" placeholder="Genre" required>
+                        <label id="errGenre" style="display: none; color:red"></label>
+                        <label>Genre</label>
+                        <input type="text" id="genre" class="form-control" style="margin-bottom:10px"  required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="publisher" class="form-control" style="margin-bottom:10px" placeholder="Publisher" required>
+                        <label>Publisher</label>
+                        <label id="errPublisher" style="display: none; color:red"></label>
+                        <input type="text" id="publisher" class="form-control" style="margin-bottom:10px"  required>
                     </div>
                     <div class="form-group">
-                        <input type="number" id="pyear" class="form-control" placeholder="P_Year" style="margin-bottom:10px" required>
+                        <label id="errYEAR" style="display: none; color:red"></label>
+                        <label>Publication Year</label>
+                        <input type="number" id="pyear" class="form-control"  style="margin-bottom:10px" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="isbn" class="form-control" placeholder="ISBN" style="margin-bottom:10px" required>
+                        <label id="errISBN" style="display: none; color:red"></label>
+                        <label>ISBN</label>
+                        <input type="text" id="isbn" class="form-control"  style="margin-bottom:10px" required>
                     </div>
                     <div class="form-group">
-                        <input type="number" id="tcopies" class="form-control" placeholder="T_Copies" required>
+                        <label id="errcopies" style="display: none; color:red"></label>
+                        <label>Total Copies</label>
+                        <input type="number" id="tcopies" class="form-control"  required>
                     </div>
                     <div class="form-group">
+                        <label id="errimg" style="display: none; color:red"></label>
+                        <label>Image</label>
                         <input type="file" id="imageFile" class="form-control" style="margin-bottom:10px" required accept=".png,.jpeg,.jpg">
                     </div>
                 </div>

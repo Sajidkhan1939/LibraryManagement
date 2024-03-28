@@ -65,12 +65,13 @@ namespace LibraryManagement.Models
     {
         [Required]
         [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid Email Address.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        [Display(Name = "PhoneNumber")]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         [Required]
-        [Display(Name = "UserName")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]
@@ -90,6 +91,7 @@ namespace LibraryManagement.Models
     {
         [Required]
         [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid Email Address.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

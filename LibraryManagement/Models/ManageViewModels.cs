@@ -61,9 +61,19 @@ namespace LibraryManagement.Models
     public class AddPhoneNumberViewModel
     {
         [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+        [Required]
+        [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid Email Address.")]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
+        public string SuccessMessage { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel

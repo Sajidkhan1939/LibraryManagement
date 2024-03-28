@@ -403,6 +403,7 @@
     <Content Include="Views\Dashboard\Books.cshtml" />
     <Content Include="Views\Dashboard\RegisterUsers.cshtml" />
     <Content Include="Views\User\UserBooks.cshtml" />
+    <Content Include="Views\Account\RegisterAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202402191026405_InitialCreate.resx">

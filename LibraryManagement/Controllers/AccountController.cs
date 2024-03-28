@@ -161,7 +161,7 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterUser(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -177,6 +177,14 @@ namespace LibraryManagement.Controllers
 
             return View(model);
         }
+
+        //
+        // GET: /Account/RegisterAdmin
+        public ActionResult RegisterAdmin()
+        {
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

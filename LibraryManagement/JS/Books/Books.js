@@ -45,9 +45,21 @@
         })
         .catch(err => console.log(err));
 }
+$('#addEmployeeModal').on('hidden.bs.modal', function () {
+    $("#bookid").val('');
+    $("#booktitle").val('');
+    $("#author").val('');
+    $("#genre").val('');
+    $("#publisher").val('');
+    $("#pyear").val('');
+    $("#isbn").val('');
+    $("#tcopies").val('');
+    $("#errMessage").hide();
+});
 function updateBook(Book_ID,title,author,genre,publisher,publication_year,ISBN,total_copies)
 {
     $("#addEmployeeModal").modal('show');
+    $("#errMessage").hide();
     $("#bookid").val(Book_ID);
     $("#booktitle").val(title);
     $("#author").val(author);
@@ -77,7 +89,28 @@ function deleteBook(id) {
             getallBooks();
         });
 }
+let checkInput = (str) => {
+    str = str.trim();
+    if (str != "")
+        return true;
+    else
+        return false;
+}
+function clearInputFields() {
+    $("#errMessage").hide();
+    $("#bookid").val('');
+    $("#booktitle").val('');
+    $("#author").val('');
+    $("#genre").val('');
+    $("#publisher").val('');
+    $("#pyear").val('');
+    $("#isbn").val('');
+    $("#tcopies").val('');
+    $("#imageFile").val('');
+    $("#errMessage").hide();
+}
 function addbook() {
+    clearInputFields()
     let bookid = $("#bookid").val();
     let title = $("#booktitle").val();
     let author = $("#author").val();
@@ -90,6 +123,17 @@ function addbook() {
     let imageFile = null;
     if (imageFiles && imageFiles.length > 0) {
         imageFile = imageFiles[0];
+    }
+    if (!title || !author || !genre || !publisher || !publication_year || !ISBN || !total_copies || !imageFiles) {
+        $("#errMessage").text("Please enter valid values for all fields.").show();
+        return false;
+    }   
+    if (!checkInput(publication_year) || !checkInput(ISBN) || !checkInput(total_copies)) {
+        $("#errMessage").text("Please enter valid values for all fields.").show();
+        window.setTimeout(function () {
+            $("#errTitle").hide();
+        }, 2000);
+        return false;
     }
     const formData = new FormData();
     formData.append('Book_ID', bookid);
@@ -129,8 +173,6 @@ function addbook() {
             console.error('Error:', error);
         });
 }
-
-
 $(document).ready(function () {
     
     getallBooks();
