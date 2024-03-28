@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -58,12 +59,5 @@ namespace Recipe.Models
                 return new DBResponse { Result = false, ExceptionMessage = ee.Message };
             }
         }
-    }
-
-    public class DBResponse
-    {
-        public bool Result { get; set; }
-        public string ExceptionMessage { get; set; }
-        public DataSet DataResult { get; set; }
     }
 }

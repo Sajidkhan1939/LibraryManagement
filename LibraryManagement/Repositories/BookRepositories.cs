@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using LibraryManagement.Models;
 using Microsoft.AspNet.Identity;
 using Recipe.Models;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +16,11 @@ namespace LibraryManagementSystem.Models
     public class BookRepositories
     {
         private readonly DBHelper db = new DBHelper();
+        public Results Results { get; set; }
+        public BookRepositories()
+        {
+            Results = new Results();
+        }
         public int AdBook(BooksViewModel dto, string imageUrl)
         {
             try
@@ -83,6 +90,35 @@ namespace LibraryManagementSystem.Models
                 throw new Exception(ex.Message);
             }
         }
+        //public Results DeleteProdPicture(int id)
+        //{
+        //    DBHelper DB = new DBHelper();
+        //    DBResponse response = new DBResponse();
+        //    try
+        //    {
+        //        response = DB.DtabaseCrud("sp_DeleteProductPicture", new List<SqlParameter>()
+        //        {
+        //            new SqlParameter("@id",id)                    
+        //        }
+        //        );
+        //        if (response.Result)
+        //        {
+        //            var ImageURL = response.DataResult.Tables[0].Rows[0][0].ToString();
+        //            string physicalPath = Path.Combine(HttpContext.Current.Server.MapPath("~" + ImageURL));
+        //            if (File.Exists(physicalPath))
+        //            {
+        //                File.Delete(physicalPath);
+        //            }
+        //            Results.Message = Convert.ToString("Picture Deleted");
+        //            Results.Result = Convert.ToString(true);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new Results();
+        //    }
+        //    return Results;
+        //}
         public List<BooksDetails> GetBooksDetails()
         {
             try

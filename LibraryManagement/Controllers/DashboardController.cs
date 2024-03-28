@@ -2,9 +2,11 @@
 using LibraryManagementSystem.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Http;
+using Recipe.Models;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -117,6 +119,7 @@ namespace LibraryManagement.Controllers
                 throw new Exception(ex.Message);
             }
         }
+       
         public ActionResult IssueBook(int id)
         {
             try
